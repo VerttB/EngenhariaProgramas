@@ -21,7 +21,7 @@ def divide_matriz(M):
     M22 = M[mid:, mid:]
     return M11, M12, M21, M22
 
-def strassenMatrix(A, B):
+def strassen_matrix(A, B):
     start = time.process_time()
     t = len(A)
     
@@ -31,13 +31,13 @@ def strassenMatrix(A, B):
     A11, A12, A21, A22 = divide_matriz(A)
     B11, B12, B21, B22 = divide_matriz(B)
     
-    P1 = strassenMatrix(A11, B12 - B22)
-    P2 = strassenMatrix(A11 + A12, B22)
-    P3 = strassenMatrix(A21 + A22, B11)
-    P4 = strassenMatrix(A22, B21 - B11)
-    P5 = strassenMatrix(A11 + A22, B11 + B22)
-    P6 = strassenMatrix(A12 - A22, B21 + B22)
-    P7 = strassenMatrix(A11 - A21, B11 + B12)
+    P1 = strassen_matrix(A11, B12 - B22)
+    P2 = strassen_matrix(A11 + A12, B22)
+    P3 = strassen_matrix(A21 + A22, B11)
+    P4 = strassen_matrix(A22, B21 - B11)
+    P5 = strassen_matrix(A11 + A22, B11 + B22)
+    P6 = strassen_matrix(A12 - A22, B21 + B22)
+    P7 = strassen_matrix(A11 - A21, B11 + B12)
     
     C11 = P5 + P4 - P2 + P6
     C12 = P1 + P2
@@ -50,7 +50,7 @@ def strassenMatrix(A, B):
     
 A = np.array([[1, 3], [7, 5]])
 B = np.array([[6, 8], [4, 2]])
-C,time = strassenMatrix(A, B)
+C,time = strassen_matrix(A, B)
 
 print(f"Tempo de duração {time:16f}")
 print(C)
