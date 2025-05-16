@@ -6,11 +6,11 @@
 - Método trivial x Algoritmo de Strassen
 - [descrever...]
 ##
-- [] calculo de complexidade
-- [] gráficos
-- [] relatorio
-- [] fazer comparacoes com outras entradas (matrizes maiores para ver o tempo de cada)
-- [] padronizar codigo ingles ou portugues
+- [ ] calculo de complexidade
+- [ ] gráficos
+- [ ] relatorio
+- [ ] fazer comparacoes com outras entradas (matrizes maiores para ver o tempo de cada)
+- [ ] padronizar codigo ingles ou portugues
 
 
 ## Entrega 2: Programção Dinâmica
