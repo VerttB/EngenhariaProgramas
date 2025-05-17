@@ -1,32 +1,15 @@
-
 import numpy as np
-import time
-
-def add_matriz(A, B):
-    t = len(A)
-    return [[A[i][j] + B[i][j] for j in range(t)] for i in range(t)]
-
-
-def sub_matriz(A, B):
-    t = len(A)
-    return [[A[i][j] - B[i][j] for j in range(t)] for i in range(t)]
-
 
 def divide_matriz(M):
-    n = len(M)
+    n = M.shape[0]
     mid = n // 2
-    M11 = M[:mid, :mid]
-    M12 = M[:mid, mid:]
-    M21 = M[mid:, :mid]
-    M22 = M[mid:, mid:]
-    return M11, M12, M21, M22
+    return M[:mid, :mid], M[:mid, mid:], M[mid:, :mid], M[mid:, mid:]
 
 def strassen_matrix(A, B):
-    start = time.process_time()
-    t = len(A)
+    t = A.shape[0]
     
-    if t < 2:
-        return np.dot(A, B)
+    if t == 1:
+        return A * B  # retorna matriz 1x1 multiplicada elemento a elemento
     
     A11, A12, A21, A22 = divide_matriz(A)
     B11, B12, B21, B22 = divide_matriz(B)
@@ -44,14 +27,8 @@ def strassen_matrix(A, B):
     C21 = P3 + P4
     C22 = P5 + P1 - P3 - P7
     
-    C = np.vstack((np.hstack((C11, C12)), np.hstack((C21, C22))))
-    end = time.process_time()
-    return C, (end-start)
+    top = np.hstack((C11, C12))
+    bottom = np.hstack((C21, C22))
+    C = np.vstack((top, bottom))
     
-A = np.array([[1, 3], [7, 5]])
-B = np.array([[6, 8], [4, 2]])
-C,time = strassen_matrix(A, B)
-
-print(f"Tempo de duração {time:16f}")
-print(C)
-
+    return C
