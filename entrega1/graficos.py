@@ -1,8 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def comparar_tempo(tempos_strassen, tempos_trivial,recursiva, tamanhos):
-    
+def comparar_tempo(tempos_trivial, recursiva, tempos_strassen, tamanhos):
     plt.plot(tamanhos, tempos_strassen, 'o-', label="Strassen")
     plt.plot(tamanhos, tempos_trivial, 's-', label="Tradicional")
     plt.plot(tamanhos, recursiva, 'd-', label="Recursiva")

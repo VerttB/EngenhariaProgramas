@@ -1,4 +1,5 @@
 import numpy as np
+
 def divide_matriz(M):
     n = len(M)
     mid = n // 2
@@ -7,6 +8,7 @@ def divide_matriz(M):
     M21 = M[mid:, :mid]
     M22 = M[mid:, mid:]
     return M11, M12, M21, M22
+
 def multiplicacao_recursiva(A, B):
     n = A.shape[0]
     if n == 1:
