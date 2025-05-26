@@ -7,12 +7,15 @@ def divide_matriz(M):
     M12 = M[:mid, mid:]
     M21 = M[mid:, :mid]
     M22 = M[mid:, mid:]
+    
     return M11, M12, M21, M22
 
 def multiplicacao_recursiva(A, B):
     n = A.shape[0]
+
     if n == 1:
         return A * B
+    
     A11, A12, A21, A22 = divide_matriz(A)
     B11, B12, B21, B22 = divide_matriz(B)
     C11 = multiplicacao_recursiva(A11, B11) + multiplicacao_recursiva(A12, B21)
@@ -22,4 +25,5 @@ def multiplicacao_recursiva(A, B):
     top = np.hstack((C11, C12))
     bottom = np.hstack((C21, C22))
     C = np.vstack((top, bottom))
+
     return C
