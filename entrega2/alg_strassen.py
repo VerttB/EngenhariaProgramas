@@ -1,5 +1,16 @@
 import numpy as np
 
+def multiplicacao_tradicional(A, B):
+    n = len(A)
+    C = np.zeros((n, n), dtype=int)  #matriz de resultado
+    
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                C[i][j] += A[i][k] * B[k][j]
+    
+    return C
+
 def divide_matriz(M):
     n = M.shape[0]
     mid = n // 2
@@ -9,7 +20,9 @@ def strassen_matrix(A, B):
     t = A.shape[0]
     
     if t == 1:
-        return A * B  #retorna matriz 1x1 multiplicada elemento a elemento
+        return A * B  # retorna matriz 1x1 multiplicada elemento a elemento
+    if t <= 64:
+        return multiplicacao_tradicional(A,B)
     
     A11, A12, A21, A22 = divide_matriz(A)
     B11, B12, B21, B22 = divide_matriz(B)

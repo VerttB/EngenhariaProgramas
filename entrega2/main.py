@@ -5,7 +5,7 @@ import numpy as np
 import time
 from tabulate import tabulate
 
-inputs_quadrados = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+inputs_quadrados = [2, 4, 8, 16, 32, 64]#, 128, 256, 512, 1024]
 strassen_times = []
 prog_dinam_times = []
 recursivaMult = []
