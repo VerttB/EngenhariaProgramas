@@ -14,9 +14,10 @@
 - Testes feitos no Linux, no ambiente do VScode
 - Os experimentos consistiram em multiplicar pares de matrizes quadradas de ordem crescente (n=2,4,8,16,....1024) e registrar o tempo de execução de cada algoritmo.
 - resultado:
+
   ![grafico_de_tempos](./img/Figure_1.png)
   ![tabela_analise](./img/ent1_table.jpeg)
 
-## Entrega 2: Programção Dinâmica
+## Entrega 2: Programação Dinâmica
 
-## ENtrega 3: Algoritmo Greedy
+## Entrega 3: Algoritmo Greedy
