@@ -8,7 +8,7 @@ import numpy as np
 import time
 from tabulate import tabulate
 
-inputsQuadrados = [2, 4, 8, 16, 32, 64,]
+inputsQuadrados = [2, 4, 8, 16, 32, 64,128,256,512]
 otimizado = []
 dinamico = []
 normal = []
@@ -24,6 +24,7 @@ for i in range(len(inputsQuadrados)):
     matrixA = np.random.randint(1, 100, (inputsQuadrados[i], inputsQuadrados[i]))
     matrixB = np.random.randint(1, 100, (inputsQuadrados[i], inputsQuadrados[i]))
     print(matrixA)
+    print(matrixB)
     #usando strassen otimizado
     start = time.process_time()
     resultado = strassen_matrix_otimizado(matrixA,matrixB)

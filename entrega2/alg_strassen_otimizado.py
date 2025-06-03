@@ -9,7 +9,7 @@ def strassen_matrix_otimizado(A, B):
     t = A.shape[0]
     
     if t == 1:
-        return A * B  # retorna matriz 1x1 multiplicada elemento a elemento
+        return A * B 
     if t <= 64:
         return multiplicacao_tradicional(A,B)
     
