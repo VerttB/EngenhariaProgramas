@@ -1,7 +1,7 @@
-from alg_strassen_otimizado import strassen_matrix_otimizado
-from alg_strassen import strassen_matrix
-from strassenDinamico import strassen_dp
-from strassen_iterativo import strassen_iterative_fixed
+from alg_strassen_otimizado import strassen_matrix_otimizado    #strassen otimizado que usa o método com 3 loops quando precisa
+from alg_strassen import strassen_matrix   #strassen normal
+from strassenDinamico import strassen_dp   #com programação dinâmixa
+from strassen_iterativo import strassen_iterative_fixed     #strassen iterativo com pilha
 
 from graficos import comparar_tempo
 import numpy as np
@@ -11,8 +11,8 @@ from tabulate import tabulate
 inputsQuadrados = [2, 4, 8, 16, 32, 64,128,256,512]
 otimizado = []
 dinamico = []
-normal = []
-iterativo2 = []
+strassen_normal = []
+iterativo_com_pilha = []
 
 
 seed = 48
@@ -43,16 +43,15 @@ for i in range(len(inputsQuadrados)):
     start = time.process_time()
     resultado = strassen_matrix(matrixA,matrixB)
     end = time.process_time()
-    normal_time = end-start
-    normal.append(normal_time)
+    strassen_normal_time = end-start
+    strassen_normal.append(strassen_normal_time)
     
     #pilha
-    
     start = time.process_time()
     resultado = strassen_iterative_fixed(matrixA,matrixB)
     end = time.process_time()
-    iterativo2_time = end-start
-    iterativo2.append(iterativo2_time)
+    iterativo_com_pilha_time = end-start
+    iterativo_com_pilha.append(iterativo_com_pilha_time)
     print(resultado)
  
     
@@ -62,11 +61,11 @@ for i in range(len(inputsQuadrados)):
         inputsQuadrados[i],
         f"{otimizado_time:.6f}",
         f"{dinamico_time:.6f}",
-        f"{normal_time:.6f}",
-        f"{iterativo2_time:.6f}"
+        f"{strassen_normal_time:.6f}",
+        f"{iterativo_com_pilha_time:.6f}"
     ])
 
 headers = ["Tamanho (n×n)", "Otimizado (s)", "Dinamico (s)", "Strassen (s)",  "Iterativo (s)"]
 print(tabulate(table_data, headers=headers, tablefmt="grid", floatfmt=".6f"))
 
-comparar_tempo(otimizado, dinamico,normal,iterativo2, inputsQuadrados)
+comparar_tempo(otimizado, dinamico, strassen_normal, iterativo_com_pilha, inputsQuadrados)
