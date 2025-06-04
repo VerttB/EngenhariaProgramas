@@ -16,7 +16,7 @@ def water_connection_greedy(n, pipes):
 
 
     for i in range(1, n + 1):
-        if end[i] == 0 and start[i] != 0:  # Fonte
+        if end[i] == 0 and start[i] != 0:  
             current = i
             min_dia = float('inf')
             while start[current] != 0:
@@ -27,31 +27,40 @@ def water_connection_greedy(n, pipes):
     return result
 
 def water_connection_dfs(n, pipes):
-    graph = {}
-    dia = {}
+    from collections import defaultdict
 
+    graph = defaultdict(list)
+    in_degree = [0] * (n + 1)
+
+    # Construir grafo e calcular grau de entrada
     for u, v, d in pipes:
-        graph[u] = v
-        dia[u] = d
+        graph[u].append((v, d))
+        in_degree[v] += 1
 
+    visited = [False] * (n + 1)
     result = []
 
-    for u in range(1, n + 1):
-        if u not in graph.values() and u in graph: 
-            current = u
-            min_d = dia[current]
+    def dfs(u, min_dia):
+        visited[u] = True
+        # Como só existe no máximo uma saída, pega o próximo nó se existir
+        if not graph[u]:
+            # Nó final (sem saída)
+            return u, min_dia
+        else:
+            v, d = graph[u][0]
+            min_dia = min(min_dia, d)
+            return dfs(v, min_dia)
 
-            while current in graph:
-                min_d = min(min_d, dia[current])
-                current = graph[current]
-
-            result.append((u, current, min_d))
+    for i in range(1, n + 1):
+        if in_degree[i] == 0 and graph[i]:  # fonte
+            dest, min_dia = dfs(i, float('inf'))
+            result.append((i, dest, min_dia))
 
     return result
 
 
 def teste():
-    sizes = [100, 500, 1000, 2000, 5000,10000,50000,100000]
+    sizes = [100, 500]
     greedy_times = []
     dfs_times = []
 
